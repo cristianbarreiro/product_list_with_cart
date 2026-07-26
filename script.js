@@ -33,11 +33,12 @@ function createProductCard(product) {
                <img src="${product.image?.desktop || ''}" alt="${product.name}" class="product-image" loading="lazy">
           </div>
           <span class="product-category">${product.category}</span>
-          <h4 class="product-name">${product.name}</h4>
+          <p class="product-name">${product.name}</p>
           <p class="product-price">$${product.price.toFixed(2)}</p>
      `;
 
      const button = document.createElement('button');
+     button.type = 'button';
      button.className = 'add-to-cart-button';
      button.innerHTML = "<img src='/assets/images/icon-add-to-cart.svg' alt='cart icon'> Add to Cart";
      button.addEventListener('click', () => addToCart(product, 1));
@@ -107,27 +108,29 @@ function updateProductCardCounter(product) {
                counter = document.createElement('div');
                counter.className = 'quantity-counter';
 
-               const minus = document.createElement('button');
-               minus.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="10" height="2" fill="none" viewBox="0 0 10 2"><path fill="currentColor" d="M0 .375h10v1.25H0V.375Z"/></svg>';
-               minus.className = 'minus-button';
+                const minus = document.createElement('button');
+                minus.type = 'button';
+                minus.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="10" height="2" fill="none" viewBox="0 0 10 2"><path fill="currentColor" d="M0 .375h10v1.25H0V.375Z"/></svg>';
+                minus.className = 'minus-button';
 
-               const plus = document.createElement('button');
-               plus.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10"><path fill="currentColor" d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"/></svg>';
-               plus.className = 'plus-button';
+                const plus = document.createElement('button');
+                plus.type = 'button';
+                plus.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10"><path fill="currentColor" d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"/></svg>';
+                plus.className = 'plus-button';
 
 
                quantitySpan = document.createElement('span');
                quantitySpan.className = 'quantity';
 
-               minus.addEventListener('click', () => {
-                    let count = parseInt(quantitySpan.textContent);
-                    count > 1 ? updateCart(product, count - 1) : removeFromCart(product);
-               });
+                minus.addEventListener('click', () => {
+                     const count = parseInt(quantitySpan.textContent);
+                     count > 1 ? updateCart(product, count - 1) : removeFromCart(product);
+                });
 
-               plus.addEventListener('click', () => {
-                    let count = parseInt(quantitySpan.textContent);
-                    updateCart(product, count + 1);
-               });
+                plus.addEventListener('click', () => {
+                     const count = parseInt(quantitySpan.textContent);
+                     updateCart(product, count + 1);
+                });
 
                counter.append(minus, quantitySpan, plus);
 
@@ -177,7 +180,7 @@ function displayCart() {
 
           itemElement.innerHTML = `
                <div class="cart-item-text">
-               <h4 class="cart-item-name">${product.name}</h4>
+               <p class="cart-item-name">${product.name}</p>
                <div class="cart-item-qty-price">
                <span class="cart-item-quantity">${quantity}x</span>
                <p class="cart-item-price">@${product.price.toFixed(2)}</p>
@@ -185,7 +188,7 @@ function displayCart() {
                </div>
                </div>
                <div class="cart-item-remove-btn-container">
-               <button class="cart-item-remove-btn"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10"><path fill="currentColor" d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"/></svg></button>
+               <button type="button" class="cart-item-remove-btn"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10"><path fill="currentColor" d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"/></svg></button>
                </div>
           `;
 
@@ -211,6 +214,7 @@ function displayCart() {
      `;
 
      const confirmOrderBtn = document.createElement('button');
+     confirmOrderBtn.type = 'button';
      confirmOrderBtn.id = 'confirm-order-btn';
      confirmOrderBtn.textContent = 'Confirm Order';
      confirmOrderBtn.addEventListener('click', showOrderModal);
