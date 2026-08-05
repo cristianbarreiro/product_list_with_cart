@@ -30,7 +30,7 @@ function createProductCard(product) {
 
      card.innerHTML = `
           <div class="product-image-container">
-               <img src="${product.image?.desktop || ''}" alt="${product.name}" class="product-image" loading="lazy">
+               <img src="${product.image?.desktop || ''}" alt="${product.name}" class="product-image" loading="eager">
           </div>
           <span class="product-category">${product.category}</span>
           <p class="product-name">${product.name}</p>
@@ -40,7 +40,7 @@ function createProductCard(product) {
      const button = document.createElement('button');
      button.type = 'button';
      button.className = 'add-to-cart-button';
-     button.innerHTML = "<img src='/assets/images/icon-add-to-cart.svg' alt='cart icon'> Add to Cart";
+     button.innerHTML = "<img src='assets/images/icon-add-to-cart.svg' alt='cart icon'> Add to Cart";
      button.addEventListener('click', () => addToCart(product, 1));
 
      const imageContainer = card.querySelector('.product-image-container');
@@ -209,7 +209,7 @@ function displayCart() {
      const orderNote = document.createElement('div');
      orderNote.className = "order-note"
      orderNote.innerHTML = `
-          <img src="/assets/images/icon-carbon-neutral.svg" alt="carbon neutral icon">
+          <img src="assets/images/icon-carbon-neutral.svg" alt="carbon neutral icon">
           <p>This is a <strong>carbon neutral </strong>  delivery</p>
      `;
 
